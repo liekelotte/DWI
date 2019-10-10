@@ -1,0 +1,718 @@
+---
+title: 'Corticostriatal white matter integrity and dopamine D1 receptor availability independently predict age differences in prefrontal value signaling during reward learning'
+subtitle: 'Short title: Predictors of value signaling in reward learning'
+author: |
+  |  Lieke de Boer^1^*, Benjam$\'{\i}$n Garz$\acute{o}$n^1^, Jan Axelsson^2^, Katrine Riklund^3^, Lars Nyberg^3,4^, Lars Bäckman^1^, Marc Guitart-Masip^1,5^
+date: ' '
+output:
+  word_document: default
+  pdf_document: 
+    includes:
+      pandoc_args: ["--include-after-body=supptables.Rmd"]
+  html_document:
+    df_print: paged
+header-includes:
+- \usepackage{setspace}\onehalfspacing
+- \usepackage[left]{lineno}
+- \linenumbers
+- \usepackage{lmodern}
+- \usepackage[T1]{fontenc}
+- \usepackage{gensymb}
+- \usepackage{newunicodechar}
+- \usepackage{caption}
+bibliography: C:/GitHub/DTI_writing/DTI_PLOS/mybibfile.bib
+biblio-style: authordate1.bst
+---
+
+```{r setup,echo=FALSE}
+    knitr::opts_knit$set(root.dir = normalizePath("C:/GitHub/samplingModel/"))  #setwd for the notebook 
+    #knitr::opts_knit$set(root.dir = normalizePath("/Users/pontus.sigray/Github/samplingModel"))  #setwd for the notebook 
+    #hides all code chunks when knitted
+```
+
+^1^ Aging Research Center, Karolinska Institutet, Tomtebodavägen 18A, 171 65, Stockholm, Sweden
+^2^ Department of Radiation Sciences, Diagnostic Radiology, University Hospital, Umeå University, SE-901 87, Umeå, Sweden
+^3^ Umeå Center for Functional Brain Imaging, Umeå University, Linnaeus väg 7, 907 36, Umeå, Sweden 
+^4^ Department of Integrative Medical Biology, Physiology, Johan Bures väg 12, SE-901 87, Umeå University, Umeå, Sweden 
+^5^ Max Planck UCL Centre for Computational Psychiatry and Ageing Research, University College London, 10-12 Russell Square, London, WC1B 5EH, United Kingdom
+
+_\*Corresponding author:_ liekelotte@gmail.com
+
+\newpage
+
+__Significance statement:__ Elderly people have difficulties when value-related changes in the environment demand behavioral change. We assessed how probabilistic reward learning, which is a proxy for this ability, is affected by the integrity of the corticostriatal complex in the brains of older and younger people. We found that white matter integrity of the nucleus accumbens to ventromedial prefrontal cortex (vmPFC) pathway predicted the strength of anticipatory value signaling in vmPFC, independently from dopamine D1 receptor availability in nucleus accumbens. This value signal is a strong predictor for probabilistic reward learning performance. Because both predictors are sensitive to natural deterioration associated with normal aging, we identified two independent factors that contribute to age-related differences in probabilistic reward learning.  
+
+__Abstract:__  Probabilistic reward learning reflects the ability to adapt choices based on probabilistic feedback. The dopaminergically innervated corticostriatal circuit in the brain is thought to play an important role in supporting successful probabilistic reward learning. Several components of the corticostriatal circuit deteriorate with age, as does probabilistic reward learning ability. We have previously shown that D1 receptor availability in NAcc predicts the strength of anticipatory value signaling in the vmPFC, a neural correlate of probabilistic learning that is attenuated in older participants and predicts probabilistic reward learning performance. In this study, we investigated how white matter integrity in the pathway between nucleus accumbens (NAcc) and ventromedial prefrontal cortex (vmPFC) relates to the strength of anticipatory value signaling in the vmPFC in younger and older participants. We found that fractional anisotropy in the pathway between NAcc and vmPFC predicted the strength of the anticipatory value signal in vmPFC independently from D1 receptor availability in NAcc. These findings suggest that indicators of integrity in the dopaminergic and white matter pathways of the corticostriatal circuit support the expression of value signaling in the vmPFC which in turn supports reward learning. This adds to a mechanistic understanding of age-related differences in probabilistic reward learning ability. 
+
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.pos = 'h')
+```
+
+# Introduction
+
+The ability to flexibly update one's actions based on value-related changes in the environment deteriorates with age, as shown in decision-making studies comparing older and younger adults [@samanez-larkin2012; @samanez-larkin2015; @deboer2017; @chowdhury2013a]. Animal studies and neuroanatomical evidence suggest that reward learning necessary for optimal value-based decision-making in changeable environments recruits corticostriatal loops [@smittenaar2017; @seger2010; @haber2016; @haber2010]. These loops are modulated by dopaminergic projections from the midbrain. Activity within the loop passing through the ventromedial portion of the striatum has consistently been associated with motivational aspects of behavior [@haber2014]. Conversely, activity within the loops passing through the dorsolateral portion of the striatum is associated with converting cognitive and motivational signals into motor programs [@bornstein2011]. 
+
+The ventromedial prefrontal cortex (vmPFC) and nucleus accumbens (NAcc) are important nodes within the motivational portion of these loops. We have previously shown that value anticipation in vmPFC is related to performance on a two-armed bandit task (TAB) [@deboer2017]. In that study, this signal proved weaker in a sample of older participants, compared with younger participants. Importantly, this value anticipation signal in vmPFC correlated with performance on the TAB, even when controlling for age. This suggested that as people age, there is a deterioration in the brain's ability to produce a strong value signal needed to perform adaptive choices.   
+
+Aging affects the integrity of the dopaminergic system (@rieckmann2011; @backman2010; @backman2000) and white-matter tracts in the brain (@raz2005; @bennett2017; @yang2016). The deterioration of either or both of these systems could underlie worse adaptive value-based decision-making in older adults. We have already shown that dopamine (DA) D1-R availability in NAcc predicts the strength of the value signal in vmPFC [@deboer2017]. Integrity of frontostriatal pathways as measured by diffusion weighted imaging (DWI) has previously proven important for good performance in probabilistic reward learning tasks, which measure value-based decision-making ability (@samanez-larkin2012; @vandevijver2016). The relationship between these measures and value-based decision-making performance could stem from the fact that the prefrontal value signal necessary for making adaptive value-based choices cannot properly emerge if the dopaminergic and accumbens-to-frontal integrity are affected. This dual dependence on dopaminergic modulation in the NAcc and frontostriatal connectivity, is supported by the recent observation that DA transporter (DAT) binding potential in NAcc has an indirect effect on reinforcement learning behavior, through frontostriatal functional connectivity [@kaiser2018].
+
+Based on this evidence, we hypothesized that accumbens-to-frontal white matter integrity would predict the strength of value anticipation signals in vmPFC. Given that D1-R availability in NAcc is also related to the strength of value anticipation in vmPFC, we expected that one of these two measures could mediate the relationship of the other measure with value anticipation in vmPFC. Alternatively, both accumbens-to-frontal white matter integrity and D1-R availability in NAcc could independently predict the strength of value anticipation signals in vmPFC. We were also expecting to find a direct relationship between accumbens-to-frontal white matter integrity and behavioral performance on the TAB. 
+
+No study has previously investigated the combined effect of dopaminergic integrity and white-matter pathway integrity on probabilistic reward learning. Here we test our hypotheses in a sample of 22 older and 23 young participants, whose data were part of a previously published study [@deboer2017]. For these participants, we report previously unpublished DWI data, as well as functional MRI data during the TAB and DA D1-R availability data with positron emission tomography (PET) available to us [@deboer2017]. We used a computational model to calculate subjective value for each participant on each trial [@deboer2017].
+
+
+# Materials and Methods
+
+## Participants
+Thirty healthy, cognitively high functioning older adults aged 66-75 and thirty younger adults aged 19-32 were recruited through local newspaper advertisements in Umeå, Sweden. The health of all potential participants was assessed before recruitment by a questionnaire administered via telephone by research nurses. The questionnaire enquired about past and present neurological or psychiatric conditions, head trauma, diabetes mellitus, arterial hypertension that required more than two medications, addiction to alcohol or other drugs, and bad eyesight. All participants were right-handed and provided written informed consent prior to commencing the study. Ethical approval was obtained from the Umeå Regional Ethical Review Board. Participants were paid 2000 SEK ($\sim$\$225) for participation and earned up to 149 additional SEK ($\sim$$17) in the two-armed bandit task (TAB). 
+
+```{r, echo=F, warning=F, message=F}
+library(knitr)
+
+inline_hook <- function (x) {
+  if (is.numeric(x)) {
+    # ifelse does a vectorized comparison
+    # If integer, print without decimal; otherwise print two places
+    res <- ifelse(x == round(x),
+      sprintf("%d", x),
+      sprintf("%.2f", x)
+    )
+    paste(res, collapse = ", ")
+  }
+} #taken this code from Jason-French.com, where he has a post on how to keep trailing zeros in knitr without having to use sprintf or round every time you call a number.
+
+knit_hooks$set(inline = inline_hook)
+source("C:\\Github\\DTI_writing\\analysis_scripts\\import_DTI.R")
+DTITAB <- import_DTI()
+mmds   <- read.csv("C:\\Github\\DTI_writing\\analysis_files\\demographics\\MMSE_ds_gngall.csv", sep = ";") # df with mmse and digit span
+TAB    <- merge(DTITAB, mmds, by='subject')
+eLife  <- read.spss("C:\\Github\\DTI_writing\\analysis_files\\spss\\beta_RQVCd_20170508.sav")
+eLife$subject  <- as.factor(gsub("'","",eLife$subject))
+eLife  <- merge(eLife, mmds, by='subject')
+DTITAB  <- merge(DTITAB, mmds, by='subject')
+
+options(digits=2)
+setwd('C:\\GitHub\\DTI_writing\\DTI_PLOS')
+```
+
+  In fMRI analyses, three older participants were excluded. One due to excessive head motion during fMRI scanning, one for only ever selecting one of the two stimuli in the task, and one due to a malfunctioning button box, resulting in no recorded responses. One additional older participant did not complete the full PET scan, but this participant's fMRI and task data are still included in the analysis where possible.  This resulted in a total of `r length(eLife$subject)` participants for fMRI and task analysis (`r length(eLife$group[eLife$group==1])` old (`r sum(eLife$sex[eLife$group==1]=="F")` female), `r length(eLife$group[eLife$group==2])` young, (`r sum(eLife$sex[eLife$group==2]=="F")` female) and `r sum(is.na(eLife$BP_Cau)==F)` participants for PET analysis (`r sum(eLife$group[is.na(eLife$BP_Cau)==F]==1)` old, `r sum(eLife$group[is.na(eLife$BP_Cau)==F]==2)` young). For DWI analysis, tracts between VS and vmPFC could not be reconstructed for `r length(eLife$subject)-length(DTITAB$subject)` out of `r length(eLife$subject)` participants. Thus, for DWI analysis, `r length(DTITAB$subject)` participants were included (`r length(DTITAB$group[DTITAB$group==1])` old, (`r sum(DTITAB$sex[DTITAB$group==1]=="F")` female), `r length(DTITAB$group[DTITAB$group==2])` young, (`r sum(DTITAB$sex[DTITAB$group==1]=="F")` female)). One of the older participants in this sample was the one that did not complete the PET scan, so for the full analysis, `r length(DTITAB$subject)-1` participants, (`r length(DTITAB$group[DTITAB$group==1])-1` old, `r length(DTITAB$group[DTITAB$group==2])` young) were included. 
+
+  All participants performed the Mini Mental State Examination (MMSE). Scores ranged from `r round(min(eLife$MMSE[eLife$group==2]))` to `r round(max(eLife$MMSE[eLife$group==2]))` in the young sample (mean = `r mean(eLife$MMSE[eLife$group==2])`, SD = `r sd(eLife$MMSE[eLife$group==2])`) and from `r round(min(eLife$MMSE[eLife$group==1]))` to `r round(max(eLife$MMSE[eLife$group==1]))` in the older sample (mean = `r mean(eLife$MMSE[eLife$group==1])`, SD = `r sd(eLife$MMSE[eLife$group==1])`), with no evidence of a difference between the two (p = `r t.test(eLife$MMSE[eLife$group==2], eLife$MMSE[eLife$group==1])$p.value`). PET and fMRI scanning were planned 2 days apart. However, due to a technical problem with the PET scanner, 12 participants were scanned at a longer delay apart (range 4-44 days apart). On the MRI scanning day, participants completed the TAB and another unrelated task inside the MRI scanner. Participants also completed a battery of tasks outside the scanner. Only results from the TAB will be discussed here.
+
+## Two-armed bandit task
+
+The TAB task was presented in Cogent 2000 (Wellcome Trust for Neuroimaging, London, UK). Figure 1a depicts a schematic representation of one TAB trial. Participants were instructed to choose the fractal stimulus they thought to be most rewarding at each trial and were informed of the changing probability of obtaining a reward for each stimulus. These probabilities varied independently from one another. Probabilities were generated using a Gaussian random walk [@daw2006a]. Before scanning, participants were presented with five practice trials. The same set of Gaussian random walks was used for all participants (Figure 1c), but assignment of random walk to stimulus identity was counterbalanced across participants.
+
+## Statistical analysis of brain and behavior
+
+  All statistical analyses were performed using R version `r as.numeric(R.version$major)`.`r as.numeric(substr(R.version$minor, 1, 1))`.`r as.numeric(substr(R.version$minor, 3, 3))`.  As a measure of performance, we used the number of rewarded trials each participant saw. This was equivalent to the amount of money each participant earned on the task (participants received 1 Swedish Crown per rewarded trial). Performance differences between groups were assessed with a one-tailed student's t-test. 
+  We used the _lm_ function in the R _stats_ package to perform a number of multiple regressions that assessed the relationship between performance, white matter integrity, value anticipation in vmPFC, and DA D1-R availability. The assumptions of the regression models were checked by testing the residuals with Shapiro-Wilk's test of normality and were considered normal at p>0.05. Variance inflation factors (VIFs) were calculated with the _ols_vif_tol_ function, part of the _olsrr_ package. We considered predictor values to be overinflated if the VIF>10 [@obrien2007]. 
+  In all of the analyses we performed, we included age as a covariate of no interest. However, we report all of the bivariate relationships without controlling for age in the multiple linear regression tables. As many of our predictors are collinear with age, controlling for age ensures that the observed relationships are robust across age groups. Thus, variables that are affected by age, but that can predict brain activity and performance beyond age, provide robust explanations for processes affected by age-related changes.  
+  
+## Computational analysis of behavior
+
+  To calculate trial-by-trial choice values, we used a previously reported computational model, a variation on a Bayesian Observer that has been shown to outperform alternative models using standard model comparison methods [@deboer2017]. For brevity, we will present only the winning model from this analysis. For model comparison statistics (including standard reinforcement learning models using the Rescorla-Wagner updating rule) and fitting procedures, we refer to our previous publication [@deboer2017]. 
+  
+  The winning model uses a softmax decision rule, where action propensities ($m_{a}(t)$) for each bandit were entered. A temperature parameter $\beta$ (with $\beta$ > 0) determined the probability that a participant chose each action a $\in$\{0,1\} (corresponding to each bandit): 
+  
+\begin{equation}
+\label{eq:softmax}
+P(a(t)=a) = \frac{exp [\beta m_a (t)]}{exp [\beta m_0 (t)] + exp [\beta m_1 (t)]}
+\end{equation}
+
+where $m_{a}(t)$ is the action propensity for bandit $a$ on trial $t$. In the winning model the probability of obtaining a reward derived for each bandit was represented as a beta distribution (one for each bandit): 
+
+\begin{equation}
+\label{eq:betadist}
+\theta_{a} \sim Beta(\theta_{a}; \gamma_{a}, \epsilon_{a})
+\end{equation}
+
+$\theta_{a}$ was updated upon observing an outcome of each trial. From these probability distributions, we derived the mean probability of getting a reward for each bandit and its variance. We will refer to the mean probability of obtaining a reward for each bandit on a given trial as the expected value $Q_{a} (t)$, which is calculated as follows:
+
+\begin{equation}
+\label{eq:meanbeta}
+Q_a (t) = \frac{\gamma_a}{(\gamma_a + \epsilon_a)}
+\end{equation}
+
+Additionally, the variance in reward probability, which was used to calculate the action propensities $m_{a}(t)$ (see further below) was defined as:
+
+\begin{equation}
+\label{eq:meanbeta}
+V_a (t) = \frac{\gamma_a \epsilon_a} {(\gamma_a +\epsilon_a)^{2}(\gamma_a +\epsilon_a +1)}
+\end{equation}
+
+The parameter values at $t = 1$ in the beta distributions were 1 ($\gamma_{a}(1)$ = $\epsilon_{a}(1)$ = 1). Therefore, $Q_{0}(1) = Q_{1}(1) = 0.5$, reflecting an expected value at chance level on the first trial and $V_{0}(1) = V_{1}(1) = 0.143$, reflecting the maximum possible variance on the first trial, in line with a general uncertainty about the underlying reward probability distributions. Both parameters of each beta distribution are updated on each trial as follows: When bandit $a$ is chosen and a reward is obtained, $\gamma_{a}$ is increased by 1, , $\epsilon_{a}$ is relaxed towards 1, and both $\gamma_{1-a}$ (1-a referring to the unchosen option) and $\epsilon_{1-a}$ are relaxed towards 1. Conversely, after reward omission, $\epsilon_{a}$ is increased by 1, but again, both $\gamma_{1-a}$ and $\epsilon_{1-a}$ are relaxed towards 1. Hence for the chosen bandit:
+
+\begin{align}
+  \label{eq:updatebeta}
+    \gamma_{a(t)}(t+1) = (1-\omega)\gamma_{a(t)}(t) + \omega + 1;\hspace{1cm}and\hspace{.15cm} \\
+    \epsilon_{a(t)}(t+1) = (1-\omega)\epsilon_{a(t)}(t) + \omega;\hspace{.7cm}if R(t)=1
+\end{align}
+
+  
+\begin{align}
+  \label{eq:updatebeta2}
+    \gamma_{a(t)}(t+1) = (1-\omega)\gamma_{a(t)}(t) + \omega;\hspace{1.4cm}and\hspace{.7cm} \\
+    \epsilon_{a(t)}(t+1) = (1-\omega)\epsilon_{a(t)}(t) + \omega + 1;\hspace{.5cm}if R(t)=0
+\end{align}
+  
+And for the unchosen bandit:
+
+\begin{align}
+  \label{eq:relaxbeta}
+    \gamma_{1-a(t)}(t+1) = (1-\lambda)\gamma_{1-a(t)}(t) + \lambda;\hspace{.8cm}and\hspace{.5cm} \\
+    \epsilon_{1-a(t)}(t+1) = (1-\lambda)\epsilon_{1-a(t)}(t) + \lambda;\hspace{2cm}
+\end{align}
+
+where $\omega$ and $\lambda$ are separate individually fitted free parameters that determine the speed with which the reward probability distributions are updated (with $0<$ $\omega$ $<1$) and forgotten ($0<$ $\lambda$ $<1$). 
+
+In addition, the variance of the bandit that was not chosen on trail $t$ was added to the action propensity of that bandit on trial $t+1$:
+
+\begin{align}
+\begin{split}
+  \label{eq:varianceunch}
+    m_{a(t+1)}\chi_{a=1-a(t)} =\hspace{3cm} Q_{a(t)} \hspace{.2cm} + \\ \hspace{2cm} \upsilon V_{a}(t+1)\chi_{a=1-a(t)}\hspace{.45cm}
+\end{split}
+\end{align}
+
+where, if $\upsilon$ is positive, choices were favored if they had high variance and if they were not chosen on the previous trial, which can be interpreted as an exploration bonus. 
+
+Lastly, a measure of confidence was added to the value of the bandit that was not chosen on trial $t$. Relative confidence was defined as the probability that a sample drawn from the distribution for bandit $a$ would be more likely to lead to a reward than a sample drawn from the distribution for bandit $1-a$. A relative confidence was added to the unchosen option at at trial $t+1$:
+
+\begin{align}
+  \label{eq:varianceunch}
+  \begin{split}
+    m_{a(t+1)}\chi_{a=1-a(t)} \hspace{.2cm}=\hspace{3cm} Q_{a(t)} \hspace{.2cm}+ \\ \hspace{2cm} \upsilon V_{a}(t+1)\chi_{a=1-a(t)}  \hspace{.2cm}+ \\ \hspace{2cm}  \kappa C^{rel} (t)\chi_{a=1-a(t)}\hspace{.45cm}
+  \end{split}
+\end{align}
+  
+Where $\kappa$ was an individually fitted parameter that weighted the relative confidence $C^{rel}$ which was calculated as follows. 
+
+\begin{align}
+  \label{eq:relconf}
+  \begin{split}
+    C^{rel}(t) \hspace{.1cm} = \hspace{.2cm} C_{a(t)} - C_{1-a(t)} \hspace{.2cm} = \\ \hspace{.3cm} P(\theta_{a(t)}) > \theta_{1-a(t)}) \hspace{.2cm} - \hspace{.2cm} P(\theta_{1-a(t)} > \theta_{a(t)})  \hspace{.2cm} =\\ \hspace{2cm} 2P(\theta_{a(t)} > \theta_{1-a(t)}) -1 \hspace{.1cm}
+  \end{split}
+\end{align}
+
+where
+
+\begin{align}
+  \label{eq:relconf1}
+  \begin{split}
+   C_{a} = P(\theta_{a(t)} > \theta_{1-a(t)}) = \hspace{.3cm} \\
+   \int_{\theta_{a} = 0}^{1} d\theta_{a}Beta(\theta_{a}; \gamma_{a}, \epsilon_{a}) \int_{\theta_{1-a} = 0}^{\theta_{a}} d\theta_{1-a}Beta(\theta_{1-a}; \gamma_{1-a}, \epsilon_{1-a})
+  \end{split}
+\end{align}
+
+
+and
+
+\begin{align}
+  \label{eq:relconf2}
+  \begin{split}
+   C_{1-a} = 1 - C_{a}
+  \end{split}
+\end{align}
+  
+## MRI acquisition
+
+  Brain images were acquired on a MR750 3T scanner (GE Medical Systems, WI, US), equipped with a 32-channel phased-array head coil. T1-weighted 3D-SPGR images were acquired using a single-echo sequence (voxel size: 0.5 x 0.5 x 1 mm, TE = 3.20, flip angle = 12 deg). Diffusion weighted imaging scans were acquired with a spin-EPI T2-weighted sequence (64 slices, voxel size = 1 x 1 x 2 mm, TR = 8000 ms, TE = 84.4ms, FoV = 25 cm, flip angle = 90$\degree$), using 3 repetitions, with 32 independent directions (b = 1000 s/mm$^2$) and six b=0 images.  Functional images were acquired using a T2*-sensitive gradient echo sequence (voxel size: 2 x 2 x 4 mm, TE = 30.0 ms, TR = 2000 ms, flip angle = 80 deg), and contained 37 slices of 3.4 mm thickness, with a 0.5 mm gap between slices. Volume acquisition occurred in an interleaved fashion. 330 volumes were obtained for each of the two functional runs. During acquisition of fMRI time series, heart rate and respiratory data were collected using a breathing belt and a pulse oximeter. 
+
+## Functional MRI analysis
+
+In house software (dicom2usb,http://dicom-port.com/) was used to de-identify all neuroimaging scans. Functional MRI analyses were performed in SPM8 (http://www.fil.ion.ucl.ac.uk/spm/software/spm8/). The preprocessing pipeline included slice-time correction, realignment, coregistration to the T1-weighted image, movement correction and normalization to MNI space. For normalization, we used a diffeomorphic registration algorithm (DARTEL [@ashburner2007]) with spatial resolution after normalization 2 x 2 x 2 mm. Data were smoothed with a final Gaussian kernel equivalent to a standard 8 mm (see below). The fMRI time series data were high-pass filtered with a 128s cut-off, and whitened with an AR(1) model. For each participant, the canonical hemodynamic response function was used to compute their statistical model.
+
+The movement parameters produced by SPM's coregistration algorithm showed that 15 participants moved >3 mm in any direction during functional runs. To correct for movement artifacts produced as a consequence of this, we used the ArtRepair toolbox [@mazaika2009; @levy2011]. ArtRepair compares the amount of motion between volume acquisitions based on the mean intensity plot of all functional scans, and linearly interpolates scans in which motion exceeds a specified threshold. We used the recommended threshold value of 1.5% deviation from the mean intensity between scans. The average number of interpolated scans for our participants was 12.2 (1.8%) (SD = 19.6 (3.0%)) and one participant was excluded for showing movement >1.0 mm in >25% of scans, in line with ArtRepair's recommendations. ArtRepair smooths the individual subject data with a Gaussian smoothing kernel of 4 mm before normalization and movement correction. A Gaussian kernel of 7 mm was then used for the normalization to MNI space, resulting in a smoothed, normalized image equivalent to a standard 8 mm smoothed normalized image.
+
+We estimated a first-level general linear model (GLM) to look at activity corresponding to value anticipation in the brain.  In this linear model, we parametrically modulated the time of choice by the expected value (Q) that belonged to the chosen option on each trial as calculated by the computational model described above. In addition, the outcome of each trial (whether the trial led to reward receipt or not) was included as a regressor at the time of outcome.   This model included several other regressors of no interest to control for motion. These included SPM's six motion regressors as well as 18 parameters that corrected for physiological noise, which we recorded with a heartbeat detector and a breathing belt during the scanning sessions. These regressors were calculated using the PhysiO toolbox version r671 (https://www.tnu.ethz.ch/en/software/tapas.html).
+
+For each participant, we then calculated a contrast images weighting the regressor of interest (Q at choice by 1). This contrast image was used at second level to perform a one-sample t-test across all participants. This resulted in a second-level map with a family-wise error (FWE) corrected threshold at p<0.05, from which we extracted parameter estimates to be used in further analysis. For DWI analysis, the activity cluster in vmPFC at p(uncorrected)<0.001 was used to facilitate the reconstruction of paths between NAcc and vmPFC.
+<!-- b. Behavioral performance on the TAB, across age group. Younger participants earned more money on the TAB on average (top left, t(49) = 1.69, p(one-tailed)=0.048). Proportion of efficient choices differed significantly between the two groups (top right, Mann-Whitney U = 286.5, p(one-tailed)=0.029). Number of switches did not differ significantly between groups (p=0.19; bottom left), but the proportion of adaptive switches differed between age groups (bottom right, Mann-Whitney = 271.0; p(two-tailed)=0.033). Proportion of efficient choices differed significantly between the two groups (top right, Mann-Whitney U = 286.5, p(one-tailed)=0.029). Number of switches did not differ significantly between groups (p=0.19; bottom left), but the proportion of adaptive switches differed between age groups (bottom right, Mann-Whitney = 271.0; p(two-tailed)=0.033). Data are represented as mean ?SEM. c. Left pane:Center and right pane: Model predictions (black lines) and observed behavior (colored lines). Model fit did not significantly differ between participants (Mann-Whitney U = 353.0, p=0.406). -->
+
+## DWI preprocessing and analysis
+
+Diffusion weighted scans were corrected for motion and current-induced distortions with FSL's eddy_correct. To further correct for geometric distortions the images were non-linearly aligned with the T1-weighted structural scan [@wu2008] with the ANTs software [@zotero-4589]. 
+
+Tractograms were generated with the MRtrix software [@tournier2012] and filtered with the SIFT2 method [@smith2015], using anatomically-constrained tractography [@smith2012]. We specified the two inclusion regions of interest (vmPFC and NAcc) as binary mask images, and accepted only streamlines that traversed both inclusion regions. We sampled until we recovered 100 streamlines between the vmPFC and NAcc regions of interest. Subjects were excluded if >200 million streamlines were considered, but less than 20 were selected as probable (n=11). FA maps were calculated using FSL's dtifit. The tract formed by the reconstructed streamlines was used to mask the FA image, and the average within the tract became the individual's measure of accumbens-to-frontal white matter integrity.
+
+
+<!--- copied from mrtrix documentation -->
+
+
+## Positron emission tomography image acquisition and analysis
+
+PET images were acquired on a 690 PET/CT scanner (GE Medical Systems, WI, US). A low-dose helical CT scan (20 mA, 120 kV, 0.8s/revolution) was used for PET attenuation correction. In order to minimize head movement during image acquisition, individually fitted thermoplastic masks were used to fixate the participants' heads (Positocasts Thermoplastic; CIVCO medical solutions, IA, US). PET scanning started after an intravenous bolus injection of 200MBq of [$^{11}$C]SCH23390. At the time of injection, a 55 minute dynamic acquisition started (9x120s, 3x180s, 3x260s and 3x300s), totaling 18 frames. Attenuation- and decay-corrected 256x256 pixel transaxial PET images were reconstructed to a 25cm field-of-view using the Sharp IR algorithm (6 iterations, 25 subsets, 3.0mm Gaussian post filter). Sharp IR is an advanced version of the Ordered Subset Expectation Maximization (OSEM) method for improving spatial resolution [@ross2010]. The Full-Width Half-Maximum (FWHM) resolution was 3.2mm. This protocol resulted in 47 tomographic slices per timeframe, with 0.98x0.98x3.3mm$^3$ voxels. Images were decay-corrected to the start of the scan.  
+
+We used a ROI-based protocol to estimate non-displaceable binding (BP$_{ND}$). BP$_{ND}$ values were obtained by coregistering the PET time series images to the T1-weighted MRI images using SPM. From the T1-weighted images, we segmented ROIs using the FIRST algorithm as implemented by FSL [@patenaude2011]. Based on our previous publication [@deboer2017], we were interested in the NAcc. The cerebellum was segmented with the use of Freesurfer's _recon-all_ algorithm [@desikan2006] and used as a reference tissue due to the lack of DA D1 receptors in this structure [@hall1994]. The average time activity curves (TAC) were extracted across all voxels within each ROI. Then, BP$_{ND}$ was calculated with the use of the Logan method [@logan1996] as implemented in imlook4d (imlook4d version 3.5, https://sites.google.com/site/imlook4d). BP$_{ND}$ values were averaged across hemispheres for the NAcc. 
+
+# Results
+
+## Behavior
+
+
+Thirty older (aged 66-75) and thirty younger (aged 19-32) participants performed a probabilistic reward learning while being scanned with fMRI. A schematic of the task, as well as the variable reward probabilities for each bandit across the task are displayed in figure 1. DWI pathways could only be reconstructed for 22 older and 23 younger participants. The behavioral results for the entire sample have been previously reported [@deboer2017]. For completeness, we present here the behavioral results, both for the entire sample, and the DWI sample only.
+
+
+```{r echo=FALSE, message=F, warning=F, eval=T, out.width='100%',fig.align = "left", fig.cap=' Left: Schematic representation of a trial in the TAB. Participants were presented with two fractal images on each trial and selected one of them through a button press. The maximum response time was 2000 ms, meaning the trial would count as a miss if the response time exceeded this limit and the next trial would start immediately after the next inter-trial interval. If one stimulus was selected, this option was highlighted with a red frame. After 1000 ms, participants were presented with the outcome: either a green arrow pointing upwards, indicating an obtained reward of 1 SEK (\\$0.11), or a yellow horizontal bar, indicating no win. Each image was randomly assigned a position on the screen (left or right) on each of the 2x110 trials of the experiment. Reward probabilities varied throughout the experiment. Right: varying reward probabilities for obtaining a reward for each bandit on the 220 trials of the experiment. ', fig.pos='htb!'}
+setwd('C:\\GitHub\\DTI_writing\\DTI_PLOS') # note that this figure was taken directly from eLife and should be changed for the final version
+knitr::include_graphics("figure1.pdf")
+```
+
+```{r, echo=F, warning=F, message=F}
+library(knitr)
+
+inline_hook <- function (x) {
+  if (is.numeric(x)) {
+    # ifelse does a vectorized comparison
+    # If integer, print without decimal; otherwise print two places
+    res <- ifelse(x == round(x),
+      sprintf("%d", x),
+      sprintf("%.2f", x)
+    )
+    paste(res, collapse = ", ")
+  }
+} #taken this code from Jason-French.com, where he has a post on how to keep trailing zeros in knitr without having to use sprintf or round every time you call a number.
+
+knit_hooks$set(inline = inline_hook)
+source("C:\\Github\\DTI_writing\\analysis_scripts\\import_DTI.R")
+DTITAB <- import_DTI()
+mmds   <- read.csv("C:\\Github\\DTI_writing\\analysis_files\\demographics\\MMSE_ds_gngall.csv", sep = ";") # df with mmse and digit span
+TAB    <- merge(DTITAB, mmds, by='subject')
+eLife  <- read.spss("C:\\Github\\DTI_writing\\analysis_files\\spss\\beta_RQVCd_20170508.sav")
+eLife$subject  <- as.factor(gsub("'","",eLife$subject))
+eLife  <- merge(eLife, mmds, by='subject')
+options(digits=2)
+setwd('C:\\GitHub\\DTI_writing\\DTI_PLOS')
+```
+
+Participants earned between 106 and 149 Swedish Crowns on the task (11 - 16 USD, M=128, SD=10.0). Older participants performed slightly worse than younger participants in both the fMRI sample (p(one-tailed)=0.05) and the DWI subsample (p(one-tailed)=0.04, figure 2). A more elaborate comparison of performance between age groups is described in [@deboer2017]. 
+
+```{r, echo=F, message=F, warning=F, eval=T, out.width='100%',fig.align='left', fig.height=3.5, fig.width=8, fig.cap=paste(paste(paste(paste('Behavioural performance on the TAB for older and younger participants, separately. Young participants performed marginally better than older participants, both in the whole sample (p(one-tailed) = ', allpval, sep=""), ', left figure, as previously published in de Boer et al., 2017), as well as in the DWI sample (p(one-tailed) = ', sep=""), DTIpval, sep=""), ', right figure).', sep=""), fig.pos='htb!', out.extra = ''}
+
+allpval<-round(t.test(eLife$wins[eLife$group==2], eLife$wins[eLife$group==1], alternative = "greater")$p.value, digits=2)
+DTIpval<-round(t.test(DTITAB$wins[DTITAB$group==2], DTITAB$wins[DTITAB$group==1], alternative = "greater")$p.value, digits=2)
+#, ', left figure), as well as in the DTI sample (p(one-tailed)=' paste(DTIpval, ', (right figure).')
+
+library(tidyverse)
+source('C:\\Github\\DTI_writing\\analysis_scripts\\multiplot.R')
+
+inline_hook <- function (x) {
+  if (is.numeric(x)) {
+    # ifelse does a vectorized comparison
+    # If integer, print without decimal; otherwise print two places
+    res <- ifelse(x == round(x),
+      sprintf("%d", x),
+      sprintf("%.2f", x)
+    )
+    paste(res, collapse = ", ")
+  }
+} #taken this code from Jason-French.com, where he has a post on how to keep trailing zeros in knitr without having to use sprintf or round every time you call a number.
+
+knit_hooks$set(inline = inline_hook)
+options(digits=2)
+
+datdf <- select(eLife, c("group", "wins")) %>%
+  group_by(group)
+datdf$group[datdf$group==1]=" old"
+datdf$group[datdf$group==2]=" young"
+datdf$group<-as.factor(datdf$group)
+
+datdf2 <- select(DTITAB, c("group", "wins")) %>%
+  group_by(group)
+datdf2$group[datdf2$group==1]=" old"
+datdf2$group[datdf2$group==2]=" young"
+datdf2$group<-as.factor(datdf2$group)
+
+allplot <- ggplot(datdf, aes(x=group, y=wins)) +
+  geom_violin(alpha=0.7, aes(fill=group)) +
+  ggtitle("entire sample") +
+  geom_boxplot(width=0.1) +
+  theme_bw() +
+ #theme(legend.position="none") +
+  scale_x_discrete(breaks = NULL) +
+  theme(plot.title=element_text(size=16, hjust = .5)) +
+  geom_dotplot(binaxis='y', stackdir='center',
+      position=position_dodge(1), binwidth = .8, fill = "#d9d9d9") +
+  scale_fill_manual(values=c("#014636", "#A2C97C")) + 
+  theme(legend.text = element_text(size=14), legend.title=element_blank()) +
+  scale_x_discrete(breaks=NULL,name="n=57 \n (27 old, 30 young)") + 
+  theme(axis.title=element_text(size=14), axis.text = element_text(size=14)) +
+  theme(axis.title.x=element_text(vjust=-0.5)) +
+  theme(plot.margin=unit(c(0.5,0,0.5,0.5),"cm"))
+  
+DTIplot <- ggplot(datdf2, aes(x=group, y=wins)) +
+  geom_violin(alpha=0.7, aes(fill=group)) +
+  ggtitle("DWI sample") +
+  geom_boxplot(width=0.1) +
+  theme_bw() +
+  theme(legend.position="none") +
+  scale_x_discrete(breaks = NULL, name="n=46 \n (23 old, 23 young)") +
+  theme(plot.title=element_text(size=16, hjust = .5)) +
+  theme(axis.title=element_text(size=14), axis.text = element_text(size=14)) +
+  geom_dotplot(binaxis='y', stackdir='center',
+                 position=position_dodge(1), binwidth = .8, fill = "#d9d9d9") +
+  scale_fill_manual(values=c("#014636", "#A2C97C")) + 
+  theme(axis.title.x=element_text(vjust=-0.5)) +
+  theme(plot.margin=unit(c(0.5,2.8,.5,0.5),"cm"))
+
+  
+multiplot(allplot, DTIplot, cols=2)
+```
+
+## Previous findings in the DWI subsample 
+
+Because the sample size in this study is limited compared to the previous publication [@deboer2017], we first confirmed that our previous findings held in the sample considered here. As in our previous study [@deboer2017], we used computational modeling to estimate the predicted expected value for each option as participants performed the TAB task (@deboer2017, see Methods). We used a general linear model (GLM) approach to look at fMRI activity corresponding to value anticipation in the brain (see Methods). In this linear model, we estimated correlates of anticipated value by parametrically modulating the time of choice by the expected value (Q) that belonged to the chosen option on each trial. In addition, the outcome of each trial (whether the trial led to reward receipt or not) was included as a regressor at the time of outcome. From the first-level subject beta maps, we created a second-level map with a family-wise error (FWE) corrected threshold at p<0.05. From this map. we used the vmPFC as a functional region of interest from which we extracted parameter estimates used in further analysis.
+
+The areas that were active during value anticipation are displayed in table 1. We previously found that value-correlated anticipatory activity in vmPFC at the time of choice significantly correlated with performance on the TAB task as indexed by the total amount of money won [@deboer2017]. This relationship could also be observed in the subsample of our study for whom DWI data was of sufficient quality for tractography analysis (r=`r cor.test(DTITAB$wins, DTITAB$vmPFC_Qch_Qonly_Bayes)$estimate`, p<0.001). This correlation survived correction for age (p=0.01). 
+
+``` {r, echo=F, message=F, warning=F, eval=T, results='asis'}
+options(knitr.kable.NA = '')
+
+Qch.coord <- read.csv("C:\\Github\\DTI_writing\\analysis_files\\Q_ch_coord.csv", sep=";")
+names(Qch.coord) <- names(Qch.coord)<- c("region", "x", "y", "z", "cluster size", "z score", "p(FWE-corr, cluster)", "p(FWE-corr, peak)")
+kable(Qch.coord, format="latex", caption = "Coordinates of clusters responsive to Q at the time of choice")
+
+
+```
+
+```{r, echo=F, message=F, warning=F, eval=F, out.width='100%',fig.align='left', fig.height=3.5, fig.width=8, fig.cap=paste(paste(paste(paste('Previously observed correlation between value-anticipatory neural activity in vmPFC and performance on the TAB (r = ', allcor.r, sep=""), ', p $<$ 0.001), left figure), as well as in the DWI sample (r = ', sep=""), DTIcor.r, sep=""), ', p $<$ 0.001), right figure). Correlations survived corrections for age.', sep=""), fig.pos='htb!', out.extra = ''}
+
+allcor.pval<-round(cor.test(eLife$wins, eLife$vmPFC_Qch_Qonly_Bayes)$p.value, digits=2)
+allcor.r<-round(cor.test(eLife$wins, eLife$vmPFC_Qch_Qonly_Bayes)$estimate, digits=2)
+DTIcor.pval<-round(cor.test(DTITAB$wins, DTITAB$vmPFC_Qch_Qonly_Bayes)$p.value, digits=2)
+DTIcor.r<-round(cor.test(DTITAB$wins, DTITAB$vmPFC_Qch_Qonly_Bayes)$estimate, digits=2)
+
+#, ', left figure), as well as in the DTI sample (p(one-tailed)=' paste(DTIpval, ', (right figure).')
+
+library(tidyverse)
+source('C:\\Github\\DTI_writing\\analysis_scripts\\multiplot.R')
+
+inline_hook <- function (x) {
+  if (is.numeric(x)) {
+    # ifelse does a vectorized comparison
+    # If integer, print without decimal; otherwise print two places
+    res <- ifelse(x == round(x),
+      sprintf("%d", x),
+      sprintf("%.2f", x)
+    )
+    paste(res, collapse = ", ")
+  }
+} #taken this code from Jason-French.com, where he has a post on how to keep trailing zeros in knitr without having to use sprintf or round every time you call a number.
+
+knit_hooks$set(inline = inline_hook)
+options(digits=2)
+
+cordf <- select(eLife, c("group", "wins", "vmPFC_Qch_Qonly_Bayes")) %>%
+  group_by(group)
+cordf$group[cordf$group==1]="old"
+cordf$group[cordf$group==2]="young"
+cordf$group<-as.factor(cordf$group)
+
+cordf2 <- select(DTITAB, c("group", "wins", "vmPFC_Qch_Qonly_Bayes")) %>%
+  group_by(group)
+cordf2$group[cordf2$group==1]="old"
+cordf2$group[cordf2$group==2]="young"
+cordf2$group<-as.factor(cordf2$group)
+
+allplot <- ggplot(cordf, aes(x=vmPFC_Qch_Qonly_Bayes, y=wins)) +
+  geom_point(aes(color=group),shape=19,size=2) +
+  ggtitle("entire sample") +
+  theme_bw() +
+  geom_smooth(method=lm,fullrange=TRUE, color="gray30", fill="gray65", size=0.8) +
+  scale_color_manual(values=c("#969696", "#252525")) + 
+  scale_x_continuous(name="parameter estimate \n Q in vmPFC") +
+  theme(plot.title=element_text(size=16, hjust = .5)) +
+  theme(legend.text = element_text(size=14), legend.title=element_blank()) +
+  theme(axis.title=element_text(size=14), axis.text = element_text(size=14)) +
+  scale_y_continuous(name="number of wins", breaks=seq(100,150,10), limits=c(105,150)) +
+  theme(plot.margin=unit(c(0.5,0,0.5,0.5),"cm"))
+
+  
+DTIplot <-  ggplot(cordf2, aes(x=vmPFC_Qch_Qonly_Bayes, y=wins)) +
+  geom_point(aes(color=group),shape=19,size=2) +
+  ggtitle("DWI sample") +
+  theme_bw() +
+  theme(legend.position="none") +
+  geom_smooth(method=lm,fullrange=TRUE, color="gray30", fill="gray65", size=0.8) +
+  scale_color_manual(values=c("#969696", "#252525")) + 
+  scale_x_continuous(name="parameter estimate \n Q in vmPFC") +
+  theme(plot.title=element_text(size=16, hjust = .5)) +
+  theme(axis.title=element_text(size=14), axis.text = element_text(size=14)) +
+  scale_y_continuous(name="number of wins", breaks=seq(100,150,10), limits=c(105,150)) +
+  theme(plot.margin=unit(c(0.5,2.8,0.5,0.5),"cm"))
+
+
+  
+multiplot(allplot, DTIplot, cols=2)
+```
+
+We also confirmed in the DWI sample that anticipatory value-related activity was correlated with DA D1-R BP$_{ND}$ in NAcc. Thus, we correlated this anticipatory activity with D1-R BP$_{ND}$ in NAcc in the entire sample, as well as in the DWI sample. These correlations survived corrections for age in the entire sample (p=0.04), but were reduced to trend level in the DWI sample (p=0.10). 
+
+```{r, echo=F, message=F, warning=F, eval=F, out.width='100%',fig.align='left', fig.height=3.5, fig.width=8, fig.cap=paste(paste(paste(paste('Previously observed correlation between value-anticipatory neural activity in vmPFC and DA D1 BP$_{ND}$ in NAcc in the entire sample (r = ', allcorDA.r, sep=""), ', p = 0.002, left figure), as well as in the DWI sample (r = ', sep=""), DTIcorDA.r, sep=""), ', p = 0.006, right figure). Correlations survived corrections for age in the whole sample (p=0.04), but not in the DWI sample (p=0.10).', sep=""), fig.pos='htb!', out.extra = ''}
+
+allcorDA.pval<-round(cor.test(eLife$BP_NAcc, eLife$vmPFC_Qch_Qonly_Bayes)$p.value, digits=2)
+allcorDA.r<-round(cor.test(eLife$BP_NAcc, eLife$vmPFC_Qch_Qonly_Bayes)$estimate, digits=2)
+DTIcorDA.pval<-round(cor.test(DTITAB$BP_NAcc, DTITAB$vmPFC_Qch_Qonly_Bayes)$p.value, digits=2)
+DTIcorDA.r<-round(cor.test(DTITAB$BP_NAcc, DTITAB$vmPFC_Qch_Qonly_Bayes)$estimate, digits=3)
+
+inline_hook <- function (x) {
+  if (is.numeric(x)) {
+    # ifelse does a vectorized comparison
+    # If integer, print without decimal; otherwise print two places
+    res <- ifelse(x == round(x),
+      sprintf("%d", x),
+      sprintf("%.2f", x)
+    )
+    paste(res, collapse = ", ")
+  }
+} #taken this code from Jason-French.com, where he has a post on how to keep trailing zeros in knitr without having to use sprintf or round every time you call a number.
+
+knit_hooks$set(inline = inline_hook)
+options(digits=2)
+
+cordf <- select(eLife, c("group", "BP_NAcc", "vmPFC_Qch_Qonly_Bayes")) %>%
+  group_by(group)
+cordf$group[cordf$group==1]="old"
+cordf$group[cordf$group==2]="young"
+cordf$group<-as.factor(cordf$group)
+
+cordf2 <- select(DTITAB, c("group", "BP_NAcc", "vmPFC_Qch_Qonly_Bayes")) %>%
+  group_by(group)
+cordf2$group[cordf2$group==1]="old"
+cordf2$group[cordf2$group==2]="young"
+cordf2$group<-as.factor(cordf2$group)
+
+allplot <- ggplot(cordf, aes(x=BP_NAcc, y=vmPFC_Qch_Qonly_Bayes)) +
+  geom_point(aes(color=group),shape=19,size=2) +
+  ggtitle("entire sample") +
+  theme_bw() +
+  geom_smooth(method=lm,fullrange=TRUE, color="gray30", fill="gray65", size=0.8) +
+  scale_color_manual(values=c("#969696", "#252525")) + 
+  labs(x=expression(BP[ND])) +
+  theme(plot.title=element_text(size=16, hjust = .5)) +
+  theme(legend.text = element_text(size=14), legend.title=element_blank()) +
+  theme(axis.title=element_text(size=14), axis.text = element_text(size=14)) +
+  scale_y_continuous(name="Q in vmPFC", breaks=seq(-10,15,5), limits=c(-6,15)) +
+  theme(plot.margin=unit(c(0.5,0,0.5,0.5),"cm"))
+
+  
+DTIplot <-  ggplot(cordf2, aes(x=BP_NAcc, y=vmPFC_Qch_Qonly_Bayes)) +
+  geom_point(aes(color=group),shape=19,size=2) +
+  ggtitle("DWI sample") +
+  theme_bw() +
+  theme(legend.position="none") +
+  geom_smooth(method=lm,fullrange=TRUE, color="gray30", fill="gray65", size=0.8) +
+  scale_color_manual(values=c("#969696", "#252525")) + 
+  labs(x=expression(BP[ND])) +
+  theme(plot.title=element_text(size=16, hjust = .5)) +
+  theme(axis.title=element_text(size=14), axis.text = element_text(size=14)) +
+  scale_y_continuous(name="Q in vmPFC", breaks=seq(-10,15,5), limits=c(-6,15)) +
+  theme(plot.margin=unit(c(0.5,2.8,0.5,0.5),"cm"))
+
+
+  
+multiplot(allplot, DTIplot, cols=2)
+```
+
+## Relationship between white-matter integrity, behavior, D1 BP$_{ND}$ and neural correlates of value anticipation
+
+Next, we tested the hypothesis that accumbens-to-frontal white matter integrity was correlated to the anticipatory value signal in vmPFC. We performed tractography analysis to reconstruct the pathway between the NAcc ROI that was used to obtain BP$_{ND}$ estimates, and the vmPFC ROI in which we saw value anticipatory activity. We used fractional anisotropy (FA) in this pathway as the measure of interest, in line with previous work (@samanez-larkin2012). White-matter integrity in this pathway was significantly different between younger and older participants (M$_{young}$(SD)=`r mean(DTITAB$meanfa[DTITAB$group==2])` (`r sd(DTITAB$meanfa[DTITAB$group==2])`),  M$_{old}$(SD)=`r mean(DTITAB$meanfa[DTITAB$group==1])` (`r sd(DTITAB$meanfa[DTITAB$group==1])`), p<0.001). We correlated these FA values to the value-anticipatory activity in vmPFC. This correlation proved significant (r=0.48, p=0.001, figure 3) and survived correction for age (p=0.01). 
+
+
+```{r, echo=F, message=F, warning=F, eval=T, out.width='100%',fig.align='left', fig.height=3.2, fig.width=2.8, fig.cap=paste(paste('Correlations between value-anticipatory neural activity in vmPFC and fractional anisotropy in the white-matter tract between NAcc and vmPFC in the DWI sample (r = ', DTIcorDA.r, sep=""), ', p = 0.001). This correlation survived correction for age (p=0.01)', sep=""), fig.pos='htb!', out.extra = ''}
+
+DTIcorDA.pval<-round(cor.test(DTITAB$meanfa, DTITAB$vmPFC_Qch_Qonly_Bayes)$p.value, digits=3)
+DTIcorDA.r<-round(cor.test(DTITAB$meanfa, DTITAB$vmPFC_Qch_Qonly_Bayes)$estimate, digits=2)
+
+inline_hook <- function (x) {
+  if (is.numeric(x)) {
+    # ifelse does a vectorized comparison
+    # If integer, print without decimal; otherwise print two places
+    res <- ifelse(x == round(x),
+      sprintf("%d", x),
+      sprintf("%.2f", x)
+    )
+    paste(res, collapse = ", ")
+  }(group)
+} #taken this code from Jason-French.com, where he has a post on how to keep trailing zeros in knitr without having to use sprintf or round every time you call a number.
+
+
+corfa <- select(DTITAB, c("group", "meanfa", "vmPFC_Qch_Qonly_Bayes")) %>%
+  group_by
+corfa$group[corfa$group==1]="old"
+corfa$group[corfa$group==2]="young"
+corfa$group<-as.factor(corfa$group)
+
+knit_hooks$set(inline = inline_hook)
+options(digits=2)
+DTIplot <-  ggplot(corfa, aes(x=meanfa, y=vmPFC_Qch_Qonly_Bayes)) +
+  geom_point(aes(color=group),shape=19,size=2) +
+  theme_bw() +
+  theme(legend.position="none") +
+  geom_smooth(method=lm,fullrange=TRUE, color="gray30", fill="gray65", size=0.8) +
+  scale_color_manual(values=c("#969696", "#252525")) + 
+  theme(plot.title=element_text(size=16, hjust = .5)) +
+  theme(axis.title=element_text(size=14), axis.text = element_text(size=14)) +
+  scale_y_continuous(name="parameter estimate \n value in vmPFC", breaks=seq(-10,15,5), limits=c(-6,15)) +
+  scale_x_continuous(name="Fractional Anisotropy \n in NAcc - vmPFC", breaks=seq(0,.5,.05), limits=c(.25,.4)) + theme(plot.margin=unit(c(0.25,0.25,0.25,0.25),"cm"))
+
+DTIplot
+
+```
+
+
+```{r echo=FALSE, message=F, warning=F, eval=T, out.width='100%',fig.align = "left", fig.cap='Observed relationships between variables investigated in this study. Age is related to both a lower D1-R BP$_{ND}$, and lower FA in the connection between vmPFC and NAcc. Both of these variables predict the expected-value signal in vmPFC during choice. This expected-value signal proved important for performance on value-based decision-making. ', fig.pos='htb!'}
+setwd('C:\\GitHub\\DTI_writing\\DTI_PLOS') # note that this figure was taken directly from eLife and should be changed for the final version
+knitr::include_graphics("figure5.svg")
+```
+   
+
+```{r, echo=F, message=F, warning=F, eval=T, results='asis', fig.pos='htb!'}
+
+library(finalfit)
+library(dplyr)
+library(kableExtra)
+library(float)
+library(olsrr)
+
+options(knitr.kable.NA = '')
+source("C:\\Github\\DTI_writing\\analysis_scripts\\import_DTI_control.R")
+lmdfcont <- import_DTI_control()
+
+lmdf<-merge(lmdfcont, DTITAB, by="subject")
+
+lmdfcont <- select(lmdf, c("age.x", "BP_NAcc.x", "vmPFC_Qch_Qonly_Bayes", "meanfa", "Linflofas_mn","Rinflofas_mn",  "Lcortsp_mn", "Rcortsp_mn", "wins.x"))
+names(lmdfcont) <- c("age", "D1_NAcc", "Q_vmPFC", "FA_vmPFC_NAcc", "FA_left_inflofas", "FA_right_inflofas", "FA_left_cortspin", "FA_right_cortspin", "wins")
+lmdfcont$inf_front_fasc<-rowMeans(cbind(lmdfcont$FA_left_inflofas, lmdfcont$FA_right_inflofas))
+lmdfcont$cort_spin_tract<-rowMeans(cbind(lmdfcont$FA_left_cortspin, lmdfcont$FA_left_cortspin))
+scaled.lmdf <- data.frame(scale(lmdfcont))
+
+# Load example dataset, modified version of survival::colon
+data(scaled.lmdf)
+# table 2 - Patient demographics by variable of interest ----
+explanatory = c("age", "D1_NAcc", "FA_vmPFC_NAcc")
+dependent = "Q_vmPFC" # Bowel perforation
+bb <- scaled.lmdf %>%
+  finalfit(dependent, explanatory)
+
+names(bb)[4] <- "Coefficient (univariate)"
+names(bb)[5] <- "Coefficient (multivariate)"
+
+bb$`Dependent: Q_vmPFC`[2] <- "D1-R in NAcc"
+bb$`Dependent: Q_vmPFC`[3] <- "accumbens-to-frontal FA"
+  
+kable(bb[,c(1,4,5)], format='latex', caption = "Univariate and multivariate standardized coefficients (95\\% confidence intervals) predicting the expected-value signal in vmPFC. Both D1-R BP$_{ND}$ and FA in the connection between NAcc and vmPFC independently predicted the strength of this value signal, although technically D1-R in BP$_{ND}$ is at trend level (p=0.052). ") %>%
+    kable_styling(font_size=9, latex_options = "scale_down")
+# OR plot
+# Previously fitted models (`glmmulti()` or 
+# `glmmixed()`) can be provided directly to `glmfit`
+```
+
+```{r, echo=F, message=F, warning=F, eval=T, results='asis'}
+options(knitr.kable.NA = '')
+
+
+inline_hook <- function (x) {
+  if (is.numeric(x)) {
+    # ifelse does a vectorized comparison
+    # If integer, print without decimal; otherwise print two places
+    res <- ifelse(x == round(x),
+      sprintf("%d", x),
+      sprintf("%.2f", x)
+    )
+    paste(res, collapse = ", ")
+  }
+} #taken this code from Jason-French.com, where he has a post on how to keep trailing zeros in knitr without having to use sprintf or round every time you call a number.
+
+dd1<-lm(Q_vmPFC ~ age + D1_NAcc, data=na.omit(scaled.lmdf))
+dd2<-lm(Q_vmPFC ~ age + FA_vmPFC_NAcc, data=na.omit(scaled.lmdf))
+dd3<-lm(Q_vmPFC ~ age + D1_NAcc + FA_vmPFC_NAcc, data=na.omit(scaled.lmdf))
+
+BIC1<-round(BIC(dd1))
+BIC2<-round(BIC(dd2))
+BIC3<-round(BIC(dd3))
+
+m1<-summary(dd1)
+m2<-summary(dd2)
+m3<-summary(dd3)
+
+modelnames <- c('age + D1', 'age + FA', 'age + D1 + FA')
+BICs <- c(BIC1, BIC2, BIC3)
+adj.r.squared<- c(round(m1$adj.r.squared, digits=3),round(m2$adj.r.squared,digits=3),round(m3$adj.r.squared,digits=3))
+
+kable(data.frame(cbind(modelnames, BICs, adj.r.squared)), col.names = c("model", "BIC", "adjusted R-squared"), caption = "Model comparison demonstrating that a model predicting value anticipation in vmPFC with both D1-R in NAcc and accumbens-to-frontal FA is superior to a model with one of the predictors only.")
+
+```
+
+```{r, echo=F, message=F, warning=F, eval=T, results='asis', fig.pos='h', fig.cap='', out.extra=''}
+
+library(finalfit)
+library(dplyr)
+library(kableExtra)
+library(float)
+options(knitr.kable.NA = '')
+
+dd<-lm(wins ~ age + D1_NAcc + FA_vmPFC_NAcc + Q_vmPFC, data=scaled.lmdf)
+VIFs<-ols_vif_tol(dd)
+
+# table 2 - Patient demographics by variable of interest ----
+explanatory = c("age", "D1_NAcc", "FA_vmPFC_NAcc", "Q_vmPFC")
+dependent = "wins" # Bowel perforation
+bb <- scaled.lmdf %>%
+  finalfit(dependent, explanatory)
+  
+bb<-cbind(bb, VIFs$VIF)
+
+names(bb)[4] <- "Coefficient (univariate)"
+names(bb)[5] <- "Coefficient (multivariate)"
+names(bb)[6] <- "VIF"
+
+bb$`Dependent: wins`[2] <- "D1-R in NAcc"
+bb$`Dependent: wins`[3] <- "accumbens-to-frontal FA"
+bb$`Dependent: wins`[4] <- "Q in vmPFC"
+
+ 
+kable(bb[,c(1,4,5,6)], format='latex', caption = "Univariate and multivariate standardized coefficients (95\\% confidence intervals) predicting the number of wins on the TAB from D1-R BP$_{ND}$ in NAcc, FA in the connection between NAcc and vmPFC, and the expected-value signal in vmPFC. Although in univariate models, the two first variables predict the strength of the expected-value signal, the latter is the only significant predictor of behaviour. The variance inflation factor (VIF) is a measure of how inflated the variance of each predictor is due to multicollinearity of the predictors. VIFs in this model are below 10, which is considered within acceptable range ") %>%
+    kable_styling(font_size=9, latex_options = "scale_down")
+# OR plot
+# Previously fitted models (`glmmulti()` or 
+# `glmmixed()`) can be provided directly to `glmfit`
+```
+
+We next investigated our hypotheses combining all predictors of anticipated value in vmPFC. As previously stated, we predicted that D1-R availability in NAcc would mediate the relationship between FA in the accumbens-to-frontal tract and the strength of the value anticipation signal in vmPFC. Alternatively, we predicted that FA in the accumbens-to-frontal tract and D1-R availability in NAcc could independently predict the strength of value anticipation signals in vmPFC. To test these hypotheses, we performed a multiple linear regression to investigate how D1-R BP$_{ND}$ and FA in the accumbens-to-frontal pathway was related to the anticipated value signal in vmPFC. The results of this multiple regression analysis are displayed in table 2.  Our result was in contrast with the hypothesis that predicted a mediation of the relationship between D1-R BP$_{ND}$ in NAcc and anticipatory value signal in vmPFC by accumbens-to-frontal FA. Instead, it confirmed the hypothesis that both BP$_{ND}$ in NAcc and accumbens-to-frontal FA were significant predictors of the anticipated value signal in vmPFC (table 2; $\beta_{age}$=0.30, p=0.211, $\beta_{D1-R}$=0.41, p=0.052, $\beta_{FA}$=0.49, p=0.006). Note that technically, D1-R in NAcc was reduced to trend level. The addition of another predictor of white matter integrity did not change the significance of these predictors (inferior frontal fasciculus, table 3-1). The model with both FA and D1-R BP$_{ND}$ in NAcc proved superior in predicting the expected-value signal in vmPFC compared to a model with FA or D1-R BP$_{ND}$ as a single predictor beyond age (Table 3).
+
+Finally, given previous findings by @samanez-larkin2012, we wanted to understand how accumbens-to-frontal white matter integrity influenced the relationship between the anticipatory value signal in vmPFC and performance on the TAB task. Therefore, we investigated the relationship between all of these variables and performance on the TAB task. Table 3 shows the univariate and multivariate relationships between value anticipation in vmPFC, D1-R BP$_{ND}$ in NAcc and the amount of money won on the task. The table also shows the variance inflation factor (VIF) for each predictor variable. VIF is a measure of how inflated the value of a predictor is in a model as a result of multicollinearity between the predictors. A rule of thumb states that a VIF > 10 is cause for further investigation [@obrien2007]. However, in our model, no VIF exceed 3.3 (Table 4). In a multiple regression, only the anticipatory value signal in vmPFC proved predictive of performance on the TAB (Table 4; $\beta_{age}$=-0.33, p=0.176, $\beta_{D1-R}$=-0.20, p=0.373, $\beta_{FA}$=-0.11, p=0.550, $\beta_{Q-vmFPC}$=0.54, p=0.002). This is in contrast with out hypothesis, which predicted we would observe a direct relationship between accumbens-to-frontal FA and performance. In figure 4, we summarize these observed relationships. 
+ 
+\newpage 
+ 
+## Discussion
+
+We showed in a sample of 23 young and 22 older participants, that the strength of a anticipatory value signal in vmPFC is independently predicted by 1) DA D1-R BP$_{ND}$ in NAcc, and 2) accumbens-to-frontal white matter integrity. The anticipatory value signal in vmPFC is an important predictor of good performance on the probabilistic reward learning task used in this study. Although, DA D1-R BPND in NAcc and accumbens-to-frontal white matter integrity did not directly predict performance on the task, our results suggest that these two measures of corticostriatal integrity are crucial for the emergence of the value anticipatory signal. 
+
+Our findings are in line with previous studies showing that frontostriatal white matter integrity is important for value-based decision-making. Specifically, one study by @samanez-larkin2012, showed that the integrity of white matter on the pathway between NAcc and medial PFC could predict performance on a probabilistic monetary incentive learning task. This relationship between performance and white matter integrity survived correction for age. Similarly, a study by van de Vijver et al. (2016) has shown that some, but not all parameters reflecting integrity in frontostriatal white matter, were related to measures of probabilistic reward learning. Frontostriatal white matter integrity was also found to be predictive of the development of delay of gratification in a longitudinal study with adolescents [@achterberg2016], suggesting that good decision-making and frontostriatal white matter integrity go hand in hand.
+
+
+<!-- In a multivariate model, these two predictors lead to the effect of age on the anticipatory signal in vmPFC to become non-significant. DA D1-R BPND in NAcc and FA in NAcc-vmPFC did not directly predict performance, but both contributed to a strong signal in vmPFC, which is an important predictor for behavioral performance on this task.  -->
+
+<!-- that the strength of the anticipatory value signal in vmPFC predicts performance on a probabilistic reward learning task beyond age.  -->
+
+<!-- Although our data does not show a direct relationship between measures of white-matter integrity and behavioral performance, the bivariate relationship between FA and performance was significant at trend level. -->
+
+Although we did not observe any direct relationship between frontostriatal white matter integrity and performance, our results suggest an indirect relationship. Frontostriatal white matter integrity predicted value anticipation in the vmPFC which in turn predicted behavioral performance on the TAB task. Value anticipation signals in vmPFC have consistently been shown to be crucial for the ability to perform probabilistic reward learning tasks (@halfmann2016; @noonan2010; @bartra2013), as it is the most flexible brain region when it comes to quick value computation (@haber2016), with computations occurring just before or during an action. Our results suggest that the age-related attenuation in the anticipatory value signal may be in part attributed to decreased integrity of the frontostriatal tract associated with higher age. The fact that we did not observe a direct relationship between frontostriatal white matter integrity and performance may stem from the design of our task. Whereas previous studies have used tasks with stationary probabilistic contingencies, the reward probabilities for each stimulus fluctuated according to a random walk. Whereas our task design may maximize the occurrence of prediction errors during probabilistic reward learning, it also promotes exploration of unchosen options which may additionally depend on frontal mechanisms unrelated with the frontostriatal path that we studied here [@boorman2009; @boorman2011].
+
+The other significant predictor of anticipatory value signals we found (DA functioning in NAcc) has often been implicated in successful probabilistic reward-learning (@chowdhury2013; @koch2000; @shiner2012; @salamone2012). It is believed that DA neurons report reward prediction errors (@day2007; @schultz1997) to target structures such as the NAcc. These dopaminergic signals in NAcc appear to be a crucial hallmark of learning [@pessiglione2006; @jocham2011], and are also necessary to continue making good decisions based on learned values (@collins2014; @shiner2012). 
+
+Interestingly, the two predictors we found did not cancel each other out in terms of the amount of variance they could explain. This suggests that both high dopaminergic integrity in NAcc, as well as high integrity in relevant white-matter pathways, contribute to a strong value signal and subsequently good performance. The fact that DA D1-R availability and accumbens-to-frontal white matter integrity predict the strength of the value anticipation signal in vmPFC is in line with the well-established theory that decision-making and reward learning is dependent on corticostriatal loops (@seger2009; @haber2016). Activity in these loops is modulated by dopaminergic signals that project from the midbrain to the striatum [@haber2010]. This dopaminergic modulation allows for the emergence of value signals in prefrontal cortex. Computational evidence suggests that striatal D1 receptors, specifically, play an important role in this iterative gating process (@gruber2006). 
+
+A limitation of this study is that we could not reconstruct white-matter pathways in 11 out of 57 participants, and thus lost a considerable amount of power in detecting relationships between DA, FA, and Q in vmPFC. Despite this, we could replicate the previously observed relationship between performance and value anticipation in vmPFC in the DWI subsample [@deboer2017]. However, the mediating relationship between DA D1-R in NAcc and Q in vmPFC that we reported previously [@deboer2017] was reduced to trend level when controlling for age. 
+
+We present an important contribution to the mechanistic understanding of decision-making in probabilistic environments. Our observations show, for the first time, that two separate predictors of the integrity of corticostriatal circuitry independently contribute to the emergence of strong anticipatory value signals important for successful decision-making. These findings, taken together, provide insights into how age-related decay in the integrity of frontostriatal white matter, as well as dopamine D1 receptor availability in the NAcc may underlie the decrease in probabilistic reward learning performance in older adults. 
+
+## Acknowledgements
+
+We thank Mats Erikson and Kajsa Burström for collecting the data. This research was supported by a research grant from the Swedish Research Council (VR521-2013-2589) (to M.G.-M.), the Humboldt Research Award (to L.B.), and a donation from the af Jochnick Foundation (L.B.). The study was accomplished while L.N. was holding the Söderberg's Professorship in Medicine from Torsten and Ragnar Söderberg's Foundation.
+
+## References {#references .unnumbered}
